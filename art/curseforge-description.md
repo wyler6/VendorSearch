@@ -34,19 +34,6 @@ Open any vendor and type in the box at the top-right of the merchant window.
 - Works with the default Blizzard merchant frame and with ElvUI's skinned one.
 - No configuration, no saved variables, no dependencies.
 
-## How it works
-
-The addon does **not** reimplement Blizzard's merchant layout — that approach is
-what usually breaks this kind of addon on a patch, and it tends to mangle
-token-cost items.
-
-Instead, Blizzard's own code draws the page. For the duration of that single
-call the merchant query functions are swapped for wrappers that translate a
-filtered position into the real merchant index; they're restored immediately
-afterwards, and each item button is re-pointed at its true index. Every click
-path — buy, link, split stack, extended-cost confirmation — runs through
-unmodified Blizzard code with the correct index.
-
 ## Source and bug reports
 
 Source is on GitHub: https://github.com/wyler6/VendorSearch
