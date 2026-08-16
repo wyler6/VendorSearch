@@ -5,5 +5,7 @@
 ## Author: wyler6
 ## IconTexture: Interface\AddOns\VendorSearch\Media\icon
 ## X-Category: Inventory
+## X-License: MIT
+## X-Website: https://github.com/wyler6/VendorSearch
 
 VendorSearch.lua

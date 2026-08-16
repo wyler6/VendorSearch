@@ -57,3 +57,7 @@ The check runs on every `MERCHANT_SHOW`, so toggling ElvUI profiles mid-session
 moves the box without a reload.
 
 If MoP Classic moves past 5.5.x, bump `## Interface:` in `VendorSearch.toc`.
+
+## License
+
+MIT — see [LICENSE](LICENSE).
