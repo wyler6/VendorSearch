@@ -1,0 +1,8 @@
+## Interface: 50500
+## Title: Vendor Search
+## Notes: Adds a search box to the vendor window that filters the items for sale.
+## Author: jdunlap
+## Version: 1.0.0
+## X-Category: Inventory
+
+VendorSearch.lua
