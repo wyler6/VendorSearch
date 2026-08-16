@@ -3,6 +3,7 @@
 ## Notes: Adds a search box to the vendor window that filters the items for sale. Multi-word searches are ANDed, and pagination, prices, tooltips, stack splitting and buying all keep working on the filtered list.
 ## Version: 1.0.0
 ## Author: wyler6
+## IconTexture: Interface\AddOns\VendorSearch\Media\icon
 ## X-Category: Inventory
 
 VendorSearch.lua
