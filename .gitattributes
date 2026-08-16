@@ -1,0 +1,9 @@
+# Keep the working tree LF so checkouts never rewrite files WoW may be loading.
+# WoW parses either.
+* text=auto eol=lf
+
+# Never line-ending-normalise art assets. text=auto would almost certainly
+# detect these as binary anyway, but a corrupted texture fails confusingly.
+*.tga binary
+*.png binary
+*.blp binary
