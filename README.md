@@ -42,16 +42,19 @@ The search box has two placement presets, picked automatically at each vendor:
 
 ```lua
 local PLACEMENT = {
-	elvui   = { ..., x = -30, y = -18, width = 110, height = 18 },
-	default = { ..., x = -40, y = -34, width = 130, height = 20 },
+	elvui   = { point = "BOTTOMRIGHT", relTo = "MerchantNextPageButton", relPoint = "TOPRIGHT", x = 0, y = 4, ... },
+	default = { point = "TOPRIGHT", relTo = "MerchantFrame", relPoint = "TOPRIGHT", x = -40, y = -34, ... },
 }
 ```
 
 `elvui` is used only when ElvUI is loaded **and** its Blizzard-frame merchant
-skin is enabled (`E.private.skins.blizzard.merchant`) — that skin removes the
-portrait and pulls the item rows up, leaving very little header room. Otherwise
-the `default` preset drops the box into the empty band the stock frame has
-between its title bar and the first item row.
+skin is enabled (`E.private.skins.blizzard.merchant`). That skin removes the
+portrait and pulls the item rows up, leaving no usable header room, so under
+ElvUI the box goes in the empty strip above the page arrows instead — anchored
+to `MerchantNextPageButton` rather than to the frame edge, so it tracks the
+arrows wherever the skin puts them. Otherwise the `default` preset drops the box
+into the empty band the stock frame has between its title bar and the first
+item row.
 
 The check runs on every `MERCHANT_SHOW`, so toggling ElvUI profiles mid-session
 moves the box without a reload.

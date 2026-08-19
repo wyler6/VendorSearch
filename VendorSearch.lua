@@ -15,12 +15,16 @@
 
 local ADDON = ...
 
--- Search box placement. ElvUI's merchant skin strips the portrait and pulls the
--- item rows up, leaving almost no header room; the default Blizzard frame has a
--- wide empty band between the title bar and the first row. So: two presets.
+-- Search box placement, one preset per merchant frame layout.
+--
+-- The default Blizzard frame has a wide empty band under its title bar, so the
+-- box sits up there. ElvUI's skin strips the portrait and pulls the item rows
+-- up, leaving no usable header room -- so under ElvUI the box goes in the empty
+-- strip along the bottom instead, anchored to the next-page arrow rather than to
+-- the frame edge so it tracks the arrow wherever the skin puts it.
 local PLACEMENT = {
-	elvui   = { point = "TOPRIGHT", relPoint = "TOPRIGHT", x = -30, y = -18, width = 110, height = 18 },
-	default = { point = "TOPRIGHT", relPoint = "TOPRIGHT", x = -40, y = -34, width = 130, height = 20 },
+	elvui   = { point = "BOTTOMRIGHT", relTo = "MerchantNextPageButton", relPoint = "TOPRIGHT", x = 0, y = 4, width = 130, height = 18 },
+	default = { point = "TOPRIGHT", relTo = "MerchantFrame", relPoint = "TOPRIGHT", x = -40, y = -34, width = 130, height = 20 },
 }
 
 local ITEMS_PER_PAGE = MERCHANT_ITEMS_PER_PAGE or 10
@@ -185,9 +189,17 @@ end
 
 local function ApplyPlacement()
 	local p = ElvUISkinsMerchant() and PLACEMENT.elvui or PLACEMENT.default
+	-- If the anchor widget is missing -- renamed by a patch, or removed by another
+	-- addon -- fall back to the default preset. Anchoring the box's bottom edge to
+	-- the frame's top edge would otherwise park it outside the window entirely.
+	local anchor = _G[p.relTo]
+	if not anchor then
+		p = PLACEMENT.default
+		anchor = _G[p.relTo] or MerchantFrame
+	end
 	searchBox:SetSize(p.width, p.height)
 	searchBox:ClearAllPoints()
-	searchBox:SetPoint(p.point, MerchantFrame, p.relPoint, p.x, p.y)
+	searchBox:SetPoint(p.point, anchor, p.relPoint, p.x, p.y)
 end
 
 ApplyPlacement()
